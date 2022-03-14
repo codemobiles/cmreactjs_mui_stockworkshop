@@ -69,16 +69,17 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-export default function Header() {
+type HeaderProp = {
+  open: boolean;
+  onDrawerOpen: () => void;
+};
+
+export default function Header({ open, onDrawerOpen }: HeaderProp) {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
+    // setOpen(true);
+    onDrawerOpen();
   };
 
   return (

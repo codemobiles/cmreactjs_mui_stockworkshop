@@ -69,16 +69,17 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-export default function Menu() {
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+type MenuProp = {
+  open: boolean;
+  onDrawerClose: () => void;
+};
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
+export default function Menu({ open, onDrawerClose }: MenuProp) {
+  const theme = useTheme();
 
   const handleDrawerClose = () => {
-    setOpen(false);
+    // setOpen(false);
+    onDrawerClose();
   };
 
   return (
