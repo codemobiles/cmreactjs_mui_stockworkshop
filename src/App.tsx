@@ -1,9 +1,13 @@
-import React from 'react'
+import * as React from 'react';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
-type Props = {}
-
-export default function App({}: Props) {
+export default function BasicButtons() {
   return (
-    <div>App</div>
-  )
+    <Stack spacing={2} direction="column">
+      <Button variant="text">Text</Button>
+      <Button variant="contained">Contained</Button>
+      <Button variant="outlined">Outlined</Button>
+    </Stack>
+  );
 }
