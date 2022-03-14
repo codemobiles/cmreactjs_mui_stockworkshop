@@ -11,3 +11,11 @@ code --install-extension esbenp.prettier-vscode
 code --install-extension humao.rest-client
 code --install-extension riazxrazor.html-to-jsx
 code --install-extension christian-kohler.path-intellisense
+
+# install
+yarn add @emotion/react @emotion/styled @mui/icons-material @mui/material @mui/x-data-grid chart.js react-chartjs-2 @react-hook/debounce react-router-dom @types/react-router-dom axios formik formik-material-ui moment react-moment url-join react-number-format @types/redux-logger react-redux redux redux-logger redux-thunk
+
+# Page Components
+// In Pages
+yarn add global create-react-component-folder
+npx crcf -f --notest --typescript LoginPage RegisterPage
