@@ -17,6 +17,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
+import { NavLink } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -82,6 +83,18 @@ export default function Menu({ open, onDrawerClose }: MenuProp) {
     onDrawerClose();
   };
 
+  const MyNavLink = React.forwardRef<any, any>((props, ref) => (
+    <NavLink
+      ref={ref}
+      to={props.to}
+      className={({ isActive }) =>
+        `${props.className} ${isActive ? props.activeClassName : ""}`
+      }
+    >
+      {props.children}
+    </NavLink>
+  ));
+
   return (
     <Drawer
       sx={{
@@ -107,19 +120,37 @@ export default function Menu({ open, onDrawerClose }: MenuProp) {
       </DrawerHeader>
       <Divider />
       <List>
-        <ListItem button>
+        <ListItem
+          button
+          to="/stock"
+          component={MyNavLink}
+          activeClassName="Mui-selected"
+          exact
+        >
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
           <ListItemText primary="Stock" />
         </ListItem>
-        <ListItem button>
+        <ListItem
+          button
+          to="/report"
+          component={MyNavLink}
+          activeClassName="Mui-selected"
+          exact
+        >
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
           <ListItemText primary="Report" />
         </ListItem>
-        <ListItem button>
+        <ListItem
+          button
+          to="/aboutus"
+          component={MyNavLink}
+          activeClassName="Mui-selected"
+          exact
+        >
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
