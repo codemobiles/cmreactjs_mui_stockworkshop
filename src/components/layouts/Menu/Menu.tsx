@@ -17,6 +17,10 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
+import Layers from "@mui/icons-material/Layers";
+import BarChart from "@mui/icons-material/BarChart";
+import Person from "@mui/icons-material/Person";
+
 import { NavLink } from "react-router-dom";
 
 const drawerWidth = 240;
@@ -120,6 +124,7 @@ export default function Menu({ open, onDrawerClose }: MenuProp) {
       </DrawerHeader>
       <Divider />
       <List>
+        {/* Stock */}
         <ListItem
           button
           to="/stock"
@@ -128,10 +133,12 @@ export default function Menu({ open, onDrawerClose }: MenuProp) {
           exact
         >
           <ListItemIcon>
-            <InboxIcon />
+            <Layers />
           </ListItemIcon>
           <ListItemText primary="Stock" />
         </ListItem>
+
+        {/* Report */}
         <ListItem
           button
           to="/report"
@@ -140,10 +147,12 @@ export default function Menu({ open, onDrawerClose }: MenuProp) {
           exact
         >
           <ListItemIcon>
-            <InboxIcon />
+            <BarChart />
           </ListItemIcon>
           <ListItemText primary="Report" />
         </ListItem>
+
+        {/*About us */}
         <ListItem
           button
           to="/aboutus"
@@ -152,7 +161,7 @@ export default function Menu({ open, onDrawerClose }: MenuProp) {
           exact
         >
           <ListItemIcon>
-            <InboxIcon />
+            <Person />
           </ListItemIcon>
           <ListItemText primary="AboutUs" />
         </ListItem>
