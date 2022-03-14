@@ -22,6 +22,11 @@ import Menu from "./components/layouts/Menu";
 import { Link, Navigate, Route, Routes } from "react-router-dom";
 import LoginPage from "./components/pages/LoginPage";
 import RegisterPage from "./components/pages/RegisterPage";
+import StockPage from "./components/pages/StockPage";
+import StockCreatePage from "./components/pages/StockCreatePage";
+import StockEditPage from "./components/pages/StockEditPage";
+import ReportPage from "./components/pages/ReportPage";
+import AboutUs from "./components/pages/AboutUs";
 
 const drawerWidth = 240;
 
@@ -76,7 +81,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 export default function App() {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -96,6 +101,11 @@ export default function App() {
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/stock" element={<StockPage />} />
+          <Route path="/stock/create" element={<StockCreatePage />} />
+          <Route path="/stock/edit/:id" element={<StockEditPage />} />
+          <Route path="/report" element={<ReportPage />} />
+          <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/" element={<Navigate to="/login" />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
