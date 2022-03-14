@@ -32,6 +32,7 @@ import StockCreatePage from "./components/pages/StockCreatePage";
 import StockEditPage from "./components/pages/StockEditPage";
 import ReportPage from "./components/pages/ReportPage";
 import AboutUs from "./components/pages/AboutUs";
+import { purple, blueGrey } from "@mui/material/colors";
 
 const drawerWidth = 240;
 
@@ -68,7 +69,16 @@ const theme = createTheme({
       },
     },
   },
+  typography: {
+    fontFamily: "Fredoka",
+    fontWeightLight: 300,
+    fontWeightRegular: 400,
+    fontWeightMedium: 500,
+    fontWeightBold: 600,
+  },
+  spacing: 8,
   palette: {
+    primary: blueGrey,
     background: {
       default: "#CFD2D6",
     },
