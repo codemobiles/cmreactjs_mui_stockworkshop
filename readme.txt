@@ -17,6 +17,11 @@ yarn add @emotion/react @emotion/styled @mui/icons-material @mui/material @mui/x
 
 # Page Components
 // In Pages
+cd src/components/pages
 yarn add global create-react-component-folder
 npx crcf -f --notest --typescript LoginPage RegisterPage
 npx crcf -f  --notest --typescript ReportPage StockPage StockCreatePage StockEditPage
+
+// In Layouts
+cd src/components/layouts
+npx crcf -f --notest --typescript Header Menu
