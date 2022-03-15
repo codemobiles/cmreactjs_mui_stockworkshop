@@ -7,7 +7,9 @@ import {
   Card,
   CardContent,
   Stack,
+  SxProps,
   TextField,
+  Theme,
   Typography,
 } from "@mui/material";
 
@@ -17,6 +19,10 @@ type RegisterPageProps = {
 
 const RegisterPage: React.FC<any> = () => {
   const navigate = useNavigate();
+  const classes: SxProps<Theme> | any = {
+    root: { display: "flex", justifyContent: "center" },
+    buttons: { marginTop: 2 },
+  };
 
   const showFormV1 = ({
     handleSubmit,
@@ -87,9 +93,9 @@ const RegisterPage: React.FC<any> = () => {
         />
         <br />
 
-        <Stack direction="row" spacing={2}>
+        <Stack direction="row" spacing={2} sx={classes.buttons}>
           <Button
-            onClick={() => navigate(-1)}
+            onClick={() => navigate("/login")}
             type="button"
             fullWidth
             variant="outlined"
@@ -112,7 +118,7 @@ const RegisterPage: React.FC<any> = () => {
 
   return (
     <>
-      <Box>
+      <Box sx={classes.root}>
         <Card sx={{ maxWidth: 345 }}>
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
