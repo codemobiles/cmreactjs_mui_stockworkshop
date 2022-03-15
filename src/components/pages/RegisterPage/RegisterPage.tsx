@@ -1,6 +1,15 @@
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { Formik, FormikProps } from "formik";
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 
 type RegisterPageProps = {
   //
@@ -9,7 +18,7 @@ type RegisterPageProps = {
 const RegisterPage: React.FC<any> = () => {
   const navigate = useNavigate();
 
-  const showForm = ({
+  const showFormV1 = ({
     handleSubmit,
     handleChange,
     isSubmitting,
@@ -44,21 +53,86 @@ const RegisterPage: React.FC<any> = () => {
     );
   };
 
+  const showFormV2 = ({
+    handleSubmit,
+    handleChange,
+    isSubmitting,
+    values,
+  }: FormikProps<any>) => {
+    return (
+      <form onSubmit={handleSubmit}>
+        <TextField
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          id="username"
+          label="Username"
+          onChange={handleChange}
+          value={values.username}
+          autoComplete="email"
+          autoFocus
+        />
+
+        <TextField
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          id="password"
+          label="Password"
+          onChange={handleChange}
+          value={values.password}
+          type="password"
+        />
+        <br />
+
+        <Stack direction="row" spacing={2}>
+          <Button
+            onClick={() => navigate(-1)}
+            type="button"
+            fullWidth
+            variant="outlined"
+          >
+            Cancel
+          </Button>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            disabled={isSubmitting}
+          >
+            Create
+          </Button>
+        </Stack>
+      </form>
+    );
+  };
+
   return (
     <>
-      <h1>RegisterPage</h1>
-      <Formik
-        onSubmit={(values, { setSubmitting }) => {
-          alert(JSON.stringify(values));
+      <Box>
+        <Card sx={{ maxWidth: 345 }}>
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              Register
+            </Typography>
+            <Formik
+              onSubmit={(values, { setSubmitting }) => {
+                alert(JSON.stringify(values));
 
-          setTimeout(() => {
-            setSubmitting(false);
-          }, 2000);
-        }}
-        initialValues={{ username: "lek", password: "xxxx" }}
-      >
-        {(props) => showForm(props)}
-      </Formik>
+                setTimeout(() => {
+                  setSubmitting(false);
+                }, 2000);
+              }}
+              initialValues={{ username: "lek", password: "xxxx" }}
+            >
+              {(props) => showFormV2(props)}
+            </Formik>
+          </CardContent>
+        </Card>
+      </Box>
     </>
   );
 };
