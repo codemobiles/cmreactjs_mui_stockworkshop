@@ -2,6 +2,13 @@
 GET http://localhost:8085/api/v2/stock/product HTTP/1.1
 
 
+### Get product by Id
+GET http://localhost:8085/api/v2/stock/product/7 HTTP/1.1
+
+
+### Get product by keyword
+GET http://localhost:8085/api/v2/stock/product/keyword/Arduino Nano HTTP/1.1
+
 
 ### Create 
 POST http://localhost:8085/api/v2/stock/product HTTP/1.1
@@ -53,3 +60,7 @@ Content-Type: image/png
 
 < ./test2.jpeg
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+
+### Delete 
+DELETE http://localhost:8085/api/v2/stock/product/13 HTTP/1.1
