@@ -12,6 +12,7 @@ import {
   Theme,
   Typography,
 } from "@mui/material";
+import { User } from "../../../types/user.type";
 
 type LoginPageProps = {
   //
@@ -29,7 +30,7 @@ const LoginPage: React.FC<any> = () => {
     handleChange,
     isSubmitting,
     values,
-  }: FormikProps<any>) => {
+  }: FormikProps<User>) => {
     return (
       <form onSubmit={handleSubmit}>
         <label>Username: </label>
@@ -64,7 +65,7 @@ const LoginPage: React.FC<any> = () => {
     handleChange,
     isSubmitting,
     values,
-  }: FormikProps<any>) => {
+  }: FormikProps<User>) => {
     return (
       <form onSubmit={handleSubmit}>
         <TextField
@@ -116,6 +117,7 @@ const LoginPage: React.FC<any> = () => {
     );
   };
 
+  const initialValues: User = { username: "", password: "" };
   return (
     <>
       <Box sx={classes.root}>
@@ -132,7 +134,7 @@ const LoginPage: React.FC<any> = () => {
                   setSubmitting(false);
                 }, 2000);
               }}
-              initialValues={{ username: "lek", password: "xxxx" }}
+              initialValues={initialValues}
             >
               {(props) => showFormV2(props)}
             </Formik>
