@@ -13,7 +13,8 @@ router.post("/login", async (req, res) => {
     if (bcrypt.compareSync(password, result.password)) {
       res.json({
         result: constants.kResultOk,
-        message: JSON.stringify(result)
+        token: "1234",
+        message: JSON.stringify(result),
       });
     } else {
       res.json({ result: constants.kResultNok, message: "Incorrect password" });

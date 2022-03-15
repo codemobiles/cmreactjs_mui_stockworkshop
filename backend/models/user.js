@@ -8,16 +8,17 @@ const user = sequelize.define(
     username: {
       type: Sequelize.STRING,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      unique: true,
     },
     password: {
       type: Sequelize.STRING,
-      allowNull: false
+      allowNull: false,
     },
     level: {
       type: Sequelize.STRING,
-      defaultValue: "normal"
-    }
+      defaultValue: "normal",
+    },
   },
   {
     //option

@@ -13,6 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 import { User } from "../../../types/user.type";
+import axios from "axios";
 
 type RegisterPageProps = {
   //
@@ -128,8 +129,13 @@ const RegisterPage: React.FC<any> = () => {
               Register
             </Typography>
             <Formik
-              onSubmit={(values, { setSubmitting }) => {
-                alert(JSON.stringify(values));
+              onSubmit={async (values, { setSubmitting }) => {
+                const result = await axios.post(
+                  "http://localhost:8085/api/v2/authen/register",
+                  values
+                );
+
+                alert(JSON.stringify(result.data));
 
                 setTimeout(() => {
                   setSubmitting(false);
