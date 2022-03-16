@@ -1,3 +1,14 @@
+// Success Page
+export const LOGIN_FETCHING = "LOGIN_FETCHING";
+export const LOGIN_FAILED = "LOGIN_FAILED";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGOUT = "LOGOUT";
+
+// Register Page
+export const REGISTER_FETCHING = "REGISTER_FETCHING";
+export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
+export const REGISTER_FAILED = "REGISTER_FAILED";
+
 export const apiUrl = "http://localhost:8085/api/v2";
 export const imageUrl = "http://localhost:8085";
 
