@@ -130,8 +130,8 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
-        <Header open={open} onDrawerOpen={handleDrawerOpen} />
-        <Menu open={open} onDrawerClose={handleDrawerClose} />
+        {true && <Header open={open} onDrawerOpen={handleDrawerOpen} />}
+        {true && <Menu open={open} onDrawerClose={handleDrawerClose} />}
         <Main open={open}>
           <DrawerHeader />
           <Routes>
