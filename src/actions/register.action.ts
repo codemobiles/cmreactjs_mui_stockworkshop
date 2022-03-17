@@ -1,4 +1,5 @@
 import {
+  OK,
   REGISTER_FAILED,
   REGISTER_FETCHING,
   REGISTER_SUCCESS,
@@ -24,10 +25,14 @@ export const register = (user: User) => {
   return async (dispatch: any) => {
     try {
       // begin connecting...
-      dispatch(setRegisterFetchingToState);
+      dispatch(setRegisterFetchingToState());
       // connect
       const result = await httpClient.post(server.REGISTER_URL, user);
-      dispatch(setRegisterSuccessToState(result.data));
+      if (result.data.result === OK) {
+        dispatch(setRegisterSuccessToState(result.data));
+      } else {
+        dispatch(setRegisterFailedToState());
+      }
     } catch (error) {
       // error
       dispatch(setRegisterFailedToState());
