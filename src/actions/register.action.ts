@@ -30,8 +30,11 @@ export const register = (user: User, navigate: any) => {
       // connect
       const result = await httpClient.post(server.REGISTER_URL, user);
       if (result.data.result === OK) {
-        dispatch(setRegisterSuccessToState(result.data));
-        navigate("/login");
+        setTimeout(() => {
+          dispatch(setRegisterSuccessToState(result.data));
+          alert("Register Successfully");
+          navigate("/login");
+        }, 2000);
       } else {
         dispatch(setRegisterFailedToState());
       }

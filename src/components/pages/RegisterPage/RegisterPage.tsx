@@ -123,7 +123,7 @@ const RegisterPage: React.FC<any> = () => {
             fullWidth
             variant="contained"
             color="primary"
-            disabled={isSubmitting}
+            disabled={registerReducer.isFetching}
           >
             Create
           </Button>
@@ -143,7 +143,7 @@ const RegisterPage: React.FC<any> = () => {
               Register
             </Typography>
             <Formik
-              onSubmit={async (values, { setSubmitting }) => {
+              onSubmit={async (values, {}) => {
                 dispatch(registerActions.register(values, navigate));
               }}
               initialValues={initialValues}
