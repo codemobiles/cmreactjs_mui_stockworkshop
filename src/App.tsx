@@ -33,8 +33,9 @@ import StockEditPage from "./components/pages/StockEditPage";
 import ReportPage from "./components/pages/ReportPage";
 import AboutUs from "./components/pages/AboutUs";
 import { purple, blueGrey } from "@mui/material/colors";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootReducers } from "./reducers";
+import * as loginActions from "./actions/login.action";
 
 const drawerWidth = 240;
 
@@ -120,6 +121,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 export default function App() {
   const [open, setOpen] = React.useState(true);
   const loginReducer = useSelector((state: RootReducers) => state.loginReducer);
+  const dispatch = useDispatch();
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -128,6 +130,10 @@ export default function App() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  React.useEffect(() => {
+    dispatch(loginActions.restoreLogin());
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>

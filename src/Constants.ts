@@ -16,6 +16,7 @@ export const YES = "YES";
 export const NO = "NO";
 export const OK = "ok";
 export const NOK = "nok";
+export const TOKEN = "TOKEN";
 
 export const LOGIN_STATUS = "LOGIN_STATUS";
 

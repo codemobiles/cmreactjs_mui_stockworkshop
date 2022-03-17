@@ -120,7 +120,7 @@ const LoginPage: React.FC<any> = () => {
             color="primary"
             disabled={loginReducer.isFetching}
           >
-            Create
+            Login
           </Button>
         </Stack>
       </form>
