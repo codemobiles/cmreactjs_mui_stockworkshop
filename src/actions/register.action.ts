@@ -1,3 +1,4 @@
+import { history } from "..";
 import {
   OK,
   REGISTER_FAILED,
@@ -30,6 +31,7 @@ export const register = (user: User) => {
       const result = await httpClient.post(server.REGISTER_URL, user);
       if (result.data.result === OK) {
         dispatch(setRegisterSuccessToState(result.data));
+        history.push("/login");
       } else {
         dispatch(setRegisterFailedToState());
       }

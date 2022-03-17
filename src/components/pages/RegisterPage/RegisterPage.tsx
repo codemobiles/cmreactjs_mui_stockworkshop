@@ -2,6 +2,7 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { Formik, FormikProps } from "formik";
 import {
+  Alert,
   Box,
   Button,
   Card,
@@ -103,6 +104,10 @@ const RegisterPage: React.FC<any> = () => {
           type="password"
         />
         <br />
+
+        {registerReducer.isError && (
+          <Alert severity="error">Register failed</Alert>
+        )}
 
         <Stack direction="row" spacing={2} sx={classes.buttons}>
           <Button
