@@ -21,7 +21,8 @@ import { Badge } from "@mui/material";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { useNavigate } from "react-router-dom";
-
+import * as loginActions from "../../../actions/login.action";
+import { useDispatch } from "react-redux";
 const drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
@@ -81,6 +82,7 @@ type HeaderProp = {
 export default function Header({ open, onDrawerOpen }: HeaderProp) {
   const theme = useTheme();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleDrawerOpen = () => {
     // setOpen(true);
@@ -129,8 +131,7 @@ export default function Header({ open, onDrawerOpen }: HeaderProp) {
             aria-label="account of current user"
             aria-haspopup="true"
             onClick={() => {
-              alert("Logout");
-              navigate("/login");
+              dispatch(loginActions.logout(navigate));
             }}
             color="inherit"
           >
