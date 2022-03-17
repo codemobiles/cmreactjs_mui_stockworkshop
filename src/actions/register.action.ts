@@ -1,4 +1,4 @@
-import { history } from "..";
+import { history } from "../index";
 import {
   OK,
   REGISTER_FAILED,
@@ -22,7 +22,7 @@ export const setRegisterFailedToState = () => ({
   type: REGISTER_FAILED,
 });
 
-export const register = (user: User) => {
+export const register = (user: User, navigate: any) => {
   return async (dispatch: any) => {
     try {
       // begin connecting...
@@ -31,7 +31,7 @@ export const register = (user: User) => {
       const result = await httpClient.post(server.REGISTER_URL, user);
       if (result.data.result === OK) {
         dispatch(setRegisterSuccessToState(result.data));
-        history.push("/login");
+        navigate("/login");
       } else {
         dispatch(setRegisterFailedToState());
       }

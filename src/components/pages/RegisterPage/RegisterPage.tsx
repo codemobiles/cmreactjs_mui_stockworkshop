@@ -144,7 +144,7 @@ const RegisterPage: React.FC<any> = () => {
             </Typography>
             <Formik
               onSubmit={async (values, { setSubmitting }) => {
-                dispatch(registerActions.register(values));
+                dispatch(registerActions.register(values, navigate));
               }}
               initialValues={initialValues}
             >
