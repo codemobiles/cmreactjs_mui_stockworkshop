@@ -2,6 +2,7 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { Formik, FormikProps } from "formik";
 import {
+  Alert,
   Box,
   Button,
   Card,
@@ -13,12 +14,19 @@ import {
   Typography,
 } from "@mui/material";
 import { User } from "../../../types/user.type";
+import { useDispatch, useSelector } from "react-redux";
+import { RootReducers } from "../../../reducers";
+import * as loginActions from "../../../actions/login.action";
 
 type LoginPageProps = {
   //
 };
 
 const LoginPage: React.FC<any> = () => {
+  const loginReducer = useSelector((state: RootReducers) => state.loginReducer);
+
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
   const classes: SxProps<Theme> | any = {
     root: { display: "flex", justifyContent: "center" },
@@ -94,6 +102,8 @@ const LoginPage: React.FC<any> = () => {
         />
         <br />
 
+        {loginReducer.isError && <Alert severity="error">Login failed</Alert>}
+
         <Stack direction="row" spacing={2} sx={classes.buttons}>
           <Button
             onClick={() => navigate("/register")}
@@ -108,7 +118,7 @@ const LoginPage: React.FC<any> = () => {
             fullWidth
             variant="contained"
             color="primary"
-            disabled={isSubmitting}
+            disabled={loginReducer.isFetching}
           >
             Create
           </Button>
@@ -127,12 +137,8 @@ const LoginPage: React.FC<any> = () => {
               Login
             </Typography>
             <Formik
-              onSubmit={(values, { setSubmitting }) => {
-                alert(JSON.stringify(values));
-
-                setTimeout(() => {
-                  setSubmitting(false);
-                }, 2000);
+              onSubmit={(values, {}) => {
+                dispatch(loginActions.login(values, navigate));
               }}
               initialValues={initialValues}
             >

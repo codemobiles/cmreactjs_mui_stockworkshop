@@ -34,7 +34,7 @@ export const register = (user: User, navigate: any) => {
           dispatch(setRegisterSuccessToState(result.data));
           alert("Register Successfully");
           navigate("/login");
-        }, 2000);
+        }, 1000);
       } else {
         dispatch(setRegisterFailedToState());
       }

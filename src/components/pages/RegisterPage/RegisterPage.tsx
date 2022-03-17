@@ -29,7 +29,6 @@ const RegisterPage: React.FC<any> = () => {
   );
 
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
   const classes: SxProps<Theme> | any = {
     root: { display: "flex", justifyContent: "center" },
