@@ -24,6 +24,7 @@ import NumberFormat from "react-number-format";
 import Moment from "react-moment";
 import { Add, Clear, Search } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import { useDebounce, useDebounceCallback } from "@react-hook/debounce";
 
 const stockColumns: GridColDef[] = [
   {
@@ -146,7 +147,6 @@ function QuickSearchToolbar(props: QuickSearchToolbarProps) {
               title="Clear"
               aria-label="Clear"
               size="small"
-              style={{ visibility: props.value ? "visible" : "hidden" }}
               onClick={props.clearSearch}
             >
               <Clear fontSize="small" />
@@ -189,6 +189,11 @@ function QuickSearchToolbar(props: QuickSearchToolbarProps) {
 export default function StockPage() {
   const stockReducer = useSelector((state: RootReducers) => state.stockReducer);
   const dispatch = useDispatch();
+  const [keywordSearch, setKeywordSearch] = useDebounce<string>("", 1000);
+
+  React.useEffect(() => {
+    dispatch(stockActions.loadStockByKeyword(keywordSearch));
+  }, [keywordSearch]);
 
   React.useEffect(() => {
     dispatch(stockActions.loadStock());
@@ -201,9 +206,9 @@ export default function StockPage() {
         componentsProps={{
           toolbar: {
             onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
-              console.log(e.target.value);
-              dispatch(stockActions.loadStockByKeyword(e.target.value));
+              setKeywordSearch(e.target.value);
             },
+            clearSearch: () => setKeywordSearch(""),
           },
         }}
         sx={{ backgroundColor: "white", height: "70vh" }}
