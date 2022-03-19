@@ -25,13 +25,32 @@ export const setStockClearToState = () => ({
 });
 
 export const loadStock = () => {
+  return (dispatch: any) => {
+    dispatch(setStockFetchingToState());
+    doGetProducts(dispatch);
+  };
+};
+
+export const loadStockByKeyword = (keyword: string) => {
   return async (dispatch: any) => {
-    try {
-      dispatch(setStockFetchingToState());
-      const result = await httpClient.get(server.PRODUCT_URL);
+    dispatch(setStockFetchingToState());
+
+    if (keyword) {
+      let result = await httpClient.get<any>(
+        `${server.PRODUCT_URL}/keyword/${keyword}`
+      );
       dispatch(setStockSuccessToState(result.data));
-    } catch (error) {
-      dispatch(setStockFailedToState());
+    } else {
+      doGetProducts(dispatch);
     }
   };
+};
+
+const doGetProducts = async (dispatch: any) => {
+  try {
+    const result = await httpClient.get(server.PRODUCT_URL);
+    dispatch(setStockSuccessToState(result.data));
+  } catch (error) {
+    dispatch(setStockFailedToState());
+  }
 };

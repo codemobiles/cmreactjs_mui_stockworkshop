@@ -198,6 +198,14 @@ export default function StockPage() {
     <Box>
       <DataGrid
         components={{ Toolbar: QuickSearchToolbar }}
+        componentsProps={{
+          toolbar: {
+            onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+              console.log(e.target.value);
+              dispatch(stockActions.loadStockByKeyword(e.target.value));
+            },
+          },
+        }}
         sx={{ backgroundColor: "white", height: "70vh" }}
         rows={stockReducer.result}
         columns={stockColumns}
