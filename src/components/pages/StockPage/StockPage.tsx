@@ -1,10 +1,28 @@
 import * as React from "react";
-import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
+import {
+  DataGrid,
+  GridColDef,
+  GridRenderCellParams,
+  GridValueGetterParams,
+} from "@mui/x-data-grid";
 import axios from "axios";
+import { imageUrl } from "../../../Constants";
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 70 },
-  { field: "image", headerName: "IMAGE", width: 100 },
+  {
+    field: "image",
+    headerName: "IMAGE",
+    width: 100,
+    renderCell: ({ value }: GridRenderCellParams<string>) => {
+      return (
+        <img
+          src={`${imageUrl}/images/${value}?dummy=${Math.random()}`}
+          style={{ width: 70, height: 70, borderRadius: "5%" }}
+        />
+      );
+    },
+  },
   { field: "name", headerName: "NAME", width: 430 },
   { field: "price", headerName: "PRICE", width: 130 },
   { field: "stock", headerName: "STOCK", width: 130 },
