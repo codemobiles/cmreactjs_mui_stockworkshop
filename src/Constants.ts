@@ -9,6 +9,17 @@ export const REGISTER_FETCHING = "REGISTER_FETCHING";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAILED = "REGISTER_FAILED";
 
+// Stock Page
+export const STOCK_FETCHING = "STOCK_FETCHING";
+export const STOCK_SUCCESS = "STOCK_SUCCESS";
+export const STOCK_FAILED = "STOCK_FAILED";
+export const STOCK_CLEAR = 'STOCK_CLEAR'
+
+// Stock Edit Page
+export const STOCK_EDIT_FETCHING = "STOCK_EDIT_FETCHING";
+export const STOCK_EDIT_SUCCESS = "STOCK_EDIT_SUCCESS";
+export const STOCK_EDIT_FAILED = "STOCK_EDIT_FAILED";
+
 export const apiUrl = "http://localhost:8085/api/v2";
 export const imageUrl = "http://localhost:8085";
 
