@@ -5,13 +5,15 @@ import {
   STOCK_FETCHING,
   STOCK_SUCCESS,
 } from "../Constants";
+import { Product } from "../types/product.type";
 import { httpClient } from "../utils/httpclient";
+import { history } from "..";
 
 export const setStockFetchingToState = () => ({
   type: STOCK_FETCHING,
 });
 
-export const setStockSuccessToState = (payload: any) => ({
+export const setStockSuccessToState = (payload: Product[]) => ({
   type: STOCK_SUCCESS,
   payload,
 });
@@ -48,7 +50,7 @@ export const loadStockByKeyword = (keyword: string) => {
 
 const doGetProducts = async (dispatch: any) => {
   try {
-    const result = await httpClient.get(server.PRODUCT_URL);
+    const result = await httpClient.get<Product[]>(server.PRODUCT_URL);
     dispatch(setStockSuccessToState(result.data));
   } catch (error) {
     dispatch(setStockFailedToState());

@@ -4,13 +4,14 @@ import {
   STOCK_EDIT_FETCHING,
   STOCK_EDIT_SUCCESS,
 } from "../Constants";
+import { Product } from "../types/product.type";
 import { httpClient } from "../utils/httpclient";
 
 export const setStockFetchingToState = () => ({
   type: STOCK_EDIT_FETCHING,
 });
 
-export const setStockSuccessToState = (payload: any) => ({
+export const setStockSuccessToState = (payload: Product) => ({
   type: STOCK_EDIT_SUCCESS,
   payload,
 });
@@ -30,7 +31,7 @@ export const getProductById = (id: any) => {
   return async (dispatch: any) => {
     try {
       dispatch(setStockFetchingToState());
-      let result = await httpClient.get(`${server.PRODUCT_URL}/${id}`);
+      let result = await httpClient.get<Product>(`${server.PRODUCT_URL}/${id}`);
       dispatch(setStockSuccessToState(result.data));
     } catch (error) {
       alert(JSON.stringify(error));
