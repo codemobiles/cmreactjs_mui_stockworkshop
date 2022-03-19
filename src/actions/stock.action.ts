@@ -62,26 +62,6 @@ export const addProduct = (formData: FormData) => {
   };
 };
 
-export const updateProduct = (formData: FormData) => {
-  return async (dispatch: any) => {
-    await httpClient.put(server.PRODUCT_URL, formData);
-    history.back();
-  };
-};
-
-export const getProductById = (id: any) => {
-  return async (dispatch: any) => {
-    try {
-      dispatch(setStockFetchingToState());
-      let result = await httpClient.get(`${server.PRODUCT_URL}/${id}`);
-      dispatch(setStockSuccessToState(result.data));
-    } catch (error) {
-      alert(JSON.stringify(error));
-      dispatch(setStockFailedToState());
-    }
-  };
-};
-
 export const deleteProduct = (id: string) => {
   return async (dispatch: any) => {
     dispatch(setStockFetchingToState());
