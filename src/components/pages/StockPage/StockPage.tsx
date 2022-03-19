@@ -12,9 +12,18 @@ import { imageUrl } from "../../../Constants";
 import * as stockActions from "../../../actions/stock.action";
 import { useDispatch, useSelector } from "react-redux";
 import { RootReducers } from "../../../reducers";
-import { Typography, Stack, IconButton } from "@mui/material";
+import {
+  Typography,
+  Stack,
+  IconButton,
+  Box,
+  TextField,
+  Fab,
+} from "@mui/material";
 import NumberFormat from "react-number-format";
 import Moment from "react-moment";
+import { Add, Clear, Search } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 const stockColumns: GridColDef[] = [
   {
@@ -111,7 +120,73 @@ const stockColumns: GridColDef[] = [
   },
 ];
 
-export default function DataTable() {
+interface QuickSearchToolbarProps {
+  clearSearch: () => void;
+  onChange: () => void;
+  value: string;
+}
+
+function QuickSearchToolbar(props: QuickSearchToolbarProps) {
+  return (
+    <Box
+      sx={{
+        p: 0.5,
+        pb: 0,
+      }}
+    >
+      <TextField
+        variant="standard"
+        value={props.value}
+        onChange={props.onChange}
+        placeholder="Search…"
+        InputProps={{
+          startAdornment: <Search fontSize="small" />,
+          endAdornment: (
+            <IconButton
+              title="Clear"
+              aria-label="Clear"
+              size="small"
+              style={{ visibility: props.value ? "visible" : "hidden" }}
+              onClick={props.clearSearch}
+            >
+              <Clear fontSize="small" />
+            </IconButton>
+          ),
+        }}
+        sx={{
+          width: {
+            xs: 1,
+            sm: "auto",
+          },
+          m: (theme) => theme.spacing(1, 0.5, 1.5),
+          "& .MuiSvgIcon-root": {
+            mr: 0.5,
+          },
+          "& .MuiInput-underline:before": {
+            borderBottom: 1,
+            borderColor: "divider",
+          },
+        }}
+      />
+
+      <Fab
+        color="primary"
+        aria-label="add"
+        component={Link}
+        to="/stock/create"
+        sx={{
+          position: "absolute",
+          top: 10,
+          right: 10,
+        }}
+      >
+        <Add />
+      </Fab>
+    </Box>
+  );
+}
+
+export default function StockPage() {
   const stockReducer = useSelector((state: RootReducers) => state.stockReducer);
   const dispatch = useDispatch();
 
@@ -120,13 +195,15 @@ export default function DataTable() {
   }, []);
 
   return (
-    <div style={{ height: 400, width: "100%" }}>
+    <Box>
       <DataGrid
+        components={{ Toolbar: QuickSearchToolbar }}
+        sx={{ backgroundColor: "white", height: "70vh" }}
         rows={stockReducer.result}
         columns={stockColumns}
         pageSize={10}
         rowsPerPageOptions={[5]}
       />
-    </div>
+    </Box>
   );
 }
