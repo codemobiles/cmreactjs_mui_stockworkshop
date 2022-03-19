@@ -147,6 +147,7 @@ function QuickSearchToolbar(props: QuickSearchToolbarProps) {
               title="Clear"
               aria-label="Clear"
               size="small"
+              style={{ visibility: props.value ? "visible" : "hidden" }}
               onClick={props.clearSearch}
             >
               <Clear fontSize="small" />
@@ -190,6 +191,8 @@ export default function StockPage() {
   const stockReducer = useSelector((state: RootReducers) => state.stockReducer);
   const dispatch = useDispatch();
   const [keywordSearch, setKeywordSearch] = useDebounce<string>("", 1000);
+  const [keywordSearchNoDelay, setKeywordSearchNoDelay] =
+    React.useState<string>("");
 
   React.useEffect(() => {
     dispatch(stockActions.loadStockByKeyword(keywordSearch));
@@ -205,10 +208,15 @@ export default function StockPage() {
         components={{ Toolbar: QuickSearchToolbar }}
         componentsProps={{
           toolbar: {
+            value: keywordSearchNoDelay,
             onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
               setKeywordSearch(e.target.value);
+              setKeywordSearchNoDelay(e.target.value);
             },
-            clearSearch: () => setKeywordSearch(""),
+            clearSearch: () => {
+              setKeywordSearch("");
+              setKeywordSearchNoDelay("");
+            },
           },
         }}
         sx={{ backgroundColor: "white", height: "70vh" }}
