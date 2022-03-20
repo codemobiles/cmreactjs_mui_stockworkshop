@@ -24,7 +24,7 @@ import {
 import NumberFormat from "react-number-format";
 import Moment from "react-moment";
 import { Add, Clear, Search } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDebounce, useDebounceCallback } from "@react-hook/debounce";
 import { Product } from "../../../types/product.type";
 
@@ -101,6 +101,7 @@ export default function StockPage() {
   const [keywordSearchNoDelay, setKeywordSearchNoDelay] = React.useState<string>("");
   const [selectedProduct, setSelectedProduct] = React.useState<Product | null>(null);
   const [openDialog, setOpenDialog] = React.useState<boolean>(false);
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     dispatch(stockActions.loadStockByKeyword(keywordSearch));
@@ -185,7 +186,7 @@ export default function StockPage() {
             aria-label="edit"
             size="large"
             onClick={() => {
-              // navigate("/stock/edit/" + row.product_id);
+              navigate("/stock/edit/" + row.id);
             }}
           >
             <EditIcon fontSize="inherit" />
@@ -207,7 +208,6 @@ export default function StockPage() {
 
   const handleDeleteConfirm = () => {
     dispatch(stockActions.deleteProduct(String(selectedProduct!.id!)));
-    dispatch(stockActions.loadStock());
     setOpenDialog(false);
   };
 
