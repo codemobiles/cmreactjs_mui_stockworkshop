@@ -6,4 +6,6 @@ export interface Product {
   stock: number;
   createdAt?: Date;
   updatedAt?: Date;
+  file?: any;
+  file_obj?: URL | string;
 }
