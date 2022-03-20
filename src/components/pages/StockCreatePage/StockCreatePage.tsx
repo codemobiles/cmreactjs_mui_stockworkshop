@@ -123,6 +123,15 @@ const StockCreatePage: React.FC<any> = () => {
   return (
     <Box>
       <Formik
+        validate={(values) => {
+          let errors: any = {};
+          if (!values.name) errors.name = "Enter name";
+          if (values.stock < 10)
+            errors.stock = "Min stock is not lower than 10";
+          if (values.price < 100)
+            errors.price = "Min price is not lower than 100";
+          return errors;
+        }}
         initialValues={initialValues}
         onSubmit={(values, { setSubmitting }) => {
           // alert(JSON.stringify(values));
