@@ -1,11 +1,7 @@
-import {
-  server,
-  STOCK_EDIT_FAILED,
-  STOCK_EDIT_FETCHING,
-  STOCK_EDIT_SUCCESS,
-} from "../Constants";
+import { server, STOCK_EDIT_FAILED, STOCK_EDIT_FETCHING, STOCK_EDIT_SUCCESS } from "../Constants";
 import { Product } from "../types/product.type";
 import { httpClient } from "../utils/httpclient";
+import { history } from "..";
 
 export const setStockFetchingToState = () => ({
   type: STOCK_EDIT_FETCHING,
