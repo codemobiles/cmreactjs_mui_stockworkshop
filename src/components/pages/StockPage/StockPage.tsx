@@ -1,10 +1,5 @@
 import * as React from "react";
-import {
-  DataGrid,
-  GridColDef,
-  GridRenderCellParams,
-  GridValueGetterParams,
-} from "@mui/x-data-grid";
+import { DataGrid, GridColDef, GridRenderCellParams, GridValueGetterParams } from "@mui/x-data-grid";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
@@ -19,6 +14,12 @@ import {
   Box,
   TextField,
   Fab,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
 } from "@mui/material";
 import NumberFormat from "react-number-format";
 import Moment from "react-moment";
@@ -191,8 +192,7 @@ export default function StockPage() {
   const stockReducer = useSelector((state: RootReducers) => state.stockReducer);
   const dispatch = useDispatch();
   const [keywordSearch, setKeywordSearch] = useDebounce<string>("", 1000);
-  const [keywordSearchNoDelay, setKeywordSearchNoDelay] =
-    React.useState<string>("");
+  const [keywordSearchNoDelay, setKeywordSearchNoDelay] = React.useState<string>("");
 
   React.useEffect(() => {
     dispatch(stockActions.loadStockByKeyword(keywordSearch));
@@ -201,6 +201,34 @@ export default function StockPage() {
   React.useEffect(() => {
     dispatch(stockActions.loadStock());
   }, []);
+
+  const [open, setOpen] = React.useState(false);
+  const handleClose = () => setOpen(false);
+
+  const showExampleDlg = () => {
+    return (
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Let Google help apps determine location. This means sending anonymous location data to Google, even when no
+            apps are running.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Disagree</Button>
+          <Button onClick={handleClose} autoFocus>
+            Agree
+          </Button>
+        </DialogActions>
+      </Dialog>
+    );
+  };
 
   return (
     <Box>
@@ -225,6 +253,8 @@ export default function StockPage() {
         pageSize={10}
         rowsPerPageOptions={[5]}
       />
+      <Button onClick={() => setOpen(true)}>Show Dlg</Button>
+      {showExampleDlg()}
     </Box>
   );
 }

@@ -1,6 +1,6 @@
 {
     "editor.formatOnSave": true,
     "explorer.compactFolders": false,    
-    "editor.wordWrap": "wordWrapColumn",
-    "editor.wordWrapColumn": 160
+    "prettier.printWidth": 120,
+    "editor.hover.delay": 1000,
 }

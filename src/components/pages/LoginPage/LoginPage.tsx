@@ -1,18 +1,7 @@
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { Formik, FormikProps } from "formik";
-import {
-  Alert,
-  Box,
-  Button,
-  Card,
-  CardContent,
-  Stack,
-  SxProps,
-  TextField,
-  Theme,
-  Typography,
-} from "@mui/material";
+import { Alert, Box, Button, Card, CardContent, Stack, SxProps, TextField, Theme, Typography } from "@mui/material";
 import { User } from "../../../types/user.type";
 import { useDispatch, useSelector } from "react-redux";
 import { RootReducers } from "../../../reducers";
@@ -33,31 +22,14 @@ const LoginPage: React.FC<any> = () => {
     buttons: { marginTop: 2 },
   };
 
-  const showFormV1 = ({
-    handleSubmit,
-    handleChange,
-    isSubmitting,
-    values,
-  }: FormikProps<User>) => {
+  const showFormV1 = ({ handleSubmit, handleChange, isSubmitting, values }: FormikProps<User>) => {
     return (
       <form onSubmit={handleSubmit}>
         <label>Username: </label>
-        <input
-          type="text"
-          name="username"
-          id="username"
-          onChange={handleChange}
-          value={values.username}
-        />
+        <input type="text" name="username" id="username" onChange={handleChange} value={values.username} />
         <br />
         <label>Password: </label>
-        <input
-          type="text"
-          name="password"
-          id="password"
-          onChange={handleChange}
-          value={values.password}
-        />
+        <input type="text" name="password" id="password" onChange={handleChange} value={values.password} />
         <br />
 
         <button type="submit" disabled={isSubmitting}>
@@ -68,12 +40,7 @@ const LoginPage: React.FC<any> = () => {
     );
   };
 
-  const showFormV2 = ({
-    handleSubmit,
-    handleChange,
-    isSubmitting,
-    values,
-  }: FormikProps<User>) => {
+  const showFormV2 = ({ handleSubmit, handleChange, isSubmitting, values }: FormikProps<User>) => {
     return (
       <form onSubmit={handleSubmit}>
         <TextField
@@ -89,37 +56,16 @@ const LoginPage: React.FC<any> = () => {
           autoFocus
         />
 
-        <TextField
-          variant="outlined"
-          margin="normal"
-          required
-          fullWidth
-          id="password"
-          label="Password"
-          onChange={handleChange}
-          value={values.password}
-          type="password"
-        />
+        <TextField variant="outlined" margin="normal" required fullWidth id="password" label="Password" onChange={handleChange} value={values.password} type="password" />
         <br />
 
         {loginReducer.isError && <Alert severity="error">Login failed</Alert>}
 
         <Stack direction="row" spacing={2} sx={classes.buttons}>
-          <Button
-            onClick={() => navigate("/register")}
-            type="button"
-            fullWidth
-            variant="outlined"
-          >
+          <Button onClick={() => navigate("/register")} type="button" fullWidth variant="outlined">
             Register
           </Button>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            disabled={loginReducer.isFetching}
-          >
+          <Button type="submit" fullWidth variant="contained" color="primary" disabled={loginReducer.isFetching}>
             Login
           </Button>
         </Stack>
