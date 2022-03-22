@@ -27,7 +27,7 @@ import StockCreatePage from "./components/pages/StockCreatePage";
 import StockEditPage from "./components/pages/StockEditPage";
 import ReportPage from "./components/pages/ReportPage";
 import AboutUs from "./components/pages/AboutUs";
-import { purple, blueGrey } from "@mui/material/colors";
+import { purple, blueGrey, blue } from "@mui/material/colors";
 import { useDispatch, useSelector } from "react-redux";
 import { RootReducers } from "./reducers";
 import * as loginActions from "./actions/login.action";
@@ -70,12 +70,12 @@ const theme = createTheme({
     fontFamily: "Fredoka",
     fontWeightLight: 300,
     fontWeightRegular: 400,
-    fontWeightMedium: 500,
+  fontWeightMedium: 500,
     fontWeightBold: 600,
   },
   spacing: 8,
   palette: {
-    primary: blueGrey,
+    primary: process.env.REACT_APP_IS_PRODUCTION == "1" ? blue : blueGrey,
     background: {
       default: "#CFD2D6",
     },

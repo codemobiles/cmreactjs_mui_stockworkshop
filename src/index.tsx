@@ -14,7 +14,7 @@ import logger from "redux-logger";
 
 let middlewares: Middleware[] = [thunk];
 
-if (true || process.env.REACT_APP_IS_PRODUCTION != "1") {
+if (process.env.REACT_APP_IS_PRODUCTION != "1") {
   middlewares.push(logger);
 }
 
