@@ -131,7 +131,7 @@ export default function StockPage() {
     {
       headerName: "NAME",
       field: "name",
-      width: 500,
+      width: 400,
     },
     {
       headerName: "STOCK",
@@ -263,10 +263,10 @@ export default function StockPage() {
             },
           },
         }}
-        sx={{ backgroundColor: "white", height: "70vh" }}
+        sx={{ backgroundColor: "white", height: "85vh" }}
         rows={stockReducer.result}
         columns={stockColumns}
-        pageSize={10}
+        pageSize={15}
         rowsPerPageOptions={[5]}
       />
 
