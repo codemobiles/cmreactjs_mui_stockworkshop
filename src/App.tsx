@@ -1,10 +1,5 @@
 import * as React from "react";
-import {
-  ThemeProvider,
-  createTheme,
-  styled,
-  useTheme,
-} from "@mui/material/styles";
+import { ThemeProvider, createTheme, styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -65,10 +60,7 @@ const theme = createTheme({
     MuiDrawer: {
       styleOverrides: {
         paper: {
-          backgroundImage:
-            "url(" +
-            `${process.env.PUBLIC_URL}/images/background_menu.jpg` +
-            ")",
+          backgroundImage: "url(" + `${process.env.PUBLIC_URL}/images/background_menu.jpg` + ")",
           width: drawerWidth,
         },
       },
@@ -141,20 +133,17 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
-        {loginReducer.result && (
-          <Header open={open} onDrawerOpen={handleDrawerOpen} />
-        )}
-        {loginReducer.result && (
-          <Menu open={open} onDrawerClose={handleDrawerClose} />
-        )}
+        {loginReducer.result && <Header open={open} onDrawerOpen={handleDrawerOpen} />}
+        {loginReducer.result && <Menu open={open} onDrawerClose={handleDrawerClose} />}
         <Main open={open}>
           <DrawerHeader />
           <Routes>
-            
             {/* Public routes */}
             <Route path="/" element={<PublicRoutes />}>
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />
+              <Route path="/" element={<Navigate to="/login" />} />
+              <Route path="*" element={<NotFound />} />
             </Route>
 
             {/* Protected routes */}
@@ -164,8 +153,6 @@ export default function App() {
               <Route path="/stock/edit/:id" element={<StockEditPage />} />
               <Route path="/report" element={<ReportPage />} />
               <Route path="/aboutus" element={<AboutUs />} />
-              <Route path="/" element={<Navigate to="/login" />} />
-              <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
         </Main>
