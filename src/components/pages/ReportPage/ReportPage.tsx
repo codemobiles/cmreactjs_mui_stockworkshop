@@ -132,10 +132,10 @@ export default () => {
       >
         <RefreshIcon />
       </IconButton>
-      <div style={{ height: 500 }}>
-        {chartType === "line" && <Chart type={"line"} data={data} width="100%" options={chartOption} />}
-        {chartType === "pie" && <Chart type="pie" data={data} width="100%" options={chartOption} />}
-        {chartType === "bar" && <Chart type="bar" data={data} width="100%" options={chartOption} />}
+      <div style={{ height: "55vh" }}>
+        {chartType === "line" && <Chart type={"line"} data={data} options={chartOption} />}
+        {chartType === "pie" && <Chart type="pie" data={data} options={chartOption} />}
+        {chartType === "bar" && <Chart type="bar" data={data} options={chartOption} />}
       </div>
     </Paper>
   );

@@ -106,6 +106,11 @@ export default function Header({ open, onDrawerOpen }: HeaderProp) {
         </Typography>
 
         <Box sx={{ flexGrow: 1 }} />
+
+        <Typography variant="h6" noWrap component="div" fontWeight="300">
+          Updated 2022
+        </Typography>
+
         <Box sx={{ display: { xs: "none", md: "flex" } }}>
           <IconButton size="large" aria-label="show 4 new mails" color="inherit">
             <Badge badgeContent={4} color="error">

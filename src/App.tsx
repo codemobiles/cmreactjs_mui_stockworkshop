@@ -70,12 +70,12 @@ const theme = createTheme({
     fontFamily: "Fredoka",
     fontWeightLight: 300,
     fontWeightRegular: 400,
-  fontWeightMedium: 500,
+    fontWeightMedium: 500,
     fontWeightBold: 600,
   },
   spacing: 8,
   palette: {
-    primary: process.env.REACT_APP_IS_PRODUCTION == "1" ? blue : blueGrey,
+    primary: process.env.REACT_APP_IS_PRODUCTION == "0" ? blue : blueGrey,
     background: {
       default: "#CFD2D6",
     },
@@ -135,7 +135,10 @@ export default function App() {
         <CssBaseline />
         {loginReducer.result && <Header open={open} onDrawerOpen={handleDrawerOpen} />}
         {loginReducer.result && <Menu open={open} onDrawerClose={handleDrawerClose} />}
-        <Main open={open}>
+        <Main
+          open={open}
+          sx={{ backgroundImage: "url(" + `${process.env.PUBLIC_URL}/images/background.jpg` + ")", height: "100vh" }}
+        >
           <DrawerHeader />
           <Routes>
             {/* Public routes */}

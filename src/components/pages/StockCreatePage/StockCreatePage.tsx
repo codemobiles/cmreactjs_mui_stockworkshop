@@ -17,7 +17,7 @@ const StockCreatePage: React.FC<any> = () => {
 
   const showPreviewImage = (values: any) => {
     if (values.file_obj) {
-      return <img src={values.file_obj} style={{ height: 100 }} />;
+      return <img src={values.file_obj} style={{ height: 150 }} />;
     }
   };
 

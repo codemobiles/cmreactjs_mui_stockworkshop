@@ -20,13 +20,15 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Grid,
 } from "@mui/material";
 import NumberFormat from "react-number-format";
 import Moment from "react-moment";
-import { Add, Clear, Search } from "@mui/icons-material";
+import { Add, AddShoppingCart, AssignmentReturn, Clear, NewReleases, Search, Star } from "@mui/icons-material";
 import { Link, useNavigate } from "react-router-dom";
 import { useDebounce, useDebounceCallback } from "@react-hook/debounce";
 import { Product } from "../../../types/product.type";
+import StockCard from "../../layouts/StockCard";
 
 interface QuickSearchToolbarProps {
   clearSearch: () => void;
@@ -248,6 +250,25 @@ export default function StockPage() {
 
   return (
     <Box>
+      {/* Summary Icons */}
+      <Grid container style={{ marginBottom: 16 }} spacing={7}>
+        <Grid item lg={3} md={6}>
+          <StockCard icon={AddShoppingCart} title="TOTAL" subtitle="112 THB" color="#00a65a" />
+        </Grid>
+
+        <Grid item lg={3} md={6}>
+          <StockCard icon={NewReleases} title="EMPTY" subtitle="9 PCS." color="#f39c12" />
+        </Grid>
+
+        <Grid item lg={3} md={6}>
+          <StockCard icon={AssignmentReturn} title="RETURN" subtitle="1 PCS." color="#dd4b39" />
+        </Grid>
+
+        <Grid item lg={3} md={6}>
+          <StockCard icon={Star} title="LOSS" subtitle="5 PCS." color="#00c0ef" />
+        </Grid>
+      </Grid>
+
       <DataGrid
         components={{ Toolbar: QuickSearchToolbar }}
         componentsProps={{
@@ -263,11 +284,11 @@ export default function StockPage() {
             },
           },
         }}
-        sx={{ backgroundColor: "white", height: "85vh" }}
+        sx={{ backgroundColor: "white", height: "70vh" }}
         rows={stockReducer.result}
         columns={stockColumns}
         pageSize={15}
-        rowsPerPageOptions={[5]}
+        rowsPerPageOptions={[15]}
       />
 
       {showDialog()}

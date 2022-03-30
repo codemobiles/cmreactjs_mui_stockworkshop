@@ -25,9 +25,9 @@ const StockEditPage: React.FC<any> = () => {
 
   const showPreviewImage = (values: any) => {
     if (values.file_obj) {
-      return <img src={values.file_obj} style={{ height: 100 }} />;
+      return <img src={values.file_obj} style={{ height: 150 }} />;
     } else if (values.image) {
-      return <img src={`${imageUrl}/images/${values.image}`} style={{ height: 100 }} />;
+      return <img src={`${imageUrl}/images/${values.image}`} style={{ height: 150 }} />;
     }
   };
 
