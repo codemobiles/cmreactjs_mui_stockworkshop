@@ -4,6 +4,7 @@ import { TextField } from "formik-material-ui";
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useMatch, useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../..";
 import { imageUrl } from "../../../Constants";
 import { RootReducers } from "../../../reducers";
 import { Product } from "../../../types/product.type";
@@ -14,7 +15,7 @@ type StockEditPageProps = {
 };
 
 const StockEditPage: React.FC<any> = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const stockEditReducer = useSelector((state: RootReducers) => state.stockEditReducer);
 
   const match = useMatch("/stock/edit/:id");

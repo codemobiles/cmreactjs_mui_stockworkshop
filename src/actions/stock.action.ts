@@ -1,13 +1,9 @@
-import {
-  server,
-  STOCK_CLEAR,
-  STOCK_FAILED,
-  STOCK_FETCHING,
-  STOCK_SUCCESS,
-} from "../Constants";
+import { server, STOCK_CLEAR, STOCK_FAILED, STOCK_FETCHING, STOCK_SUCCESS } from "../Constants";
 import { Product } from "../types/product.type";
 import { httpClient } from "../utils/httpclient";
 import { history } from "..";
+import { Dispatch } from "react";
+import { AnyAction } from "redux";
 
 export const setStockFetchingToState = () => ({
   type: STOCK_FETCHING,
@@ -38,9 +34,7 @@ export const loadStockByKeyword = (keyword: string) => {
     dispatch(setStockFetchingToState());
 
     if (keyword) {
-      let result = await httpClient.get<any>(
-        `${server.PRODUCT_URL}/keyword/${keyword}`
-      );
+      let result = await httpClient.get<any>(`${server.PRODUCT_URL}/keyword/${keyword}`);
       dispatch(setStockSuccessToState(result.data));
     } else {
       doGetProducts(dispatch);
@@ -65,7 +59,7 @@ export const addProduct = (formData: FormData) => {
 };
 
 export const deleteProduct = (id: string) => {
-  return async (dispatch: any) => {
+  return async (dispatch: Dispatch<AnyAction>) => {
     dispatch(setStockFetchingToState());
     await httpClient.delete(`${server.PRODUCT_URL}/${id}`);
     await doGetProducts(dispatch);

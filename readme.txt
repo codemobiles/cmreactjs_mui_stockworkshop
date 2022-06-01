@@ -1,6 +1,7 @@
 - new project: 
 npm i -g create-react-app
 npx create-react-app cmreactjs_mui_stockworkshop --template typescript
+npx create-react-app demo1 --template typescript
 
 
 # vscode extension 

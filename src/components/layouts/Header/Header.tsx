@@ -23,6 +23,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import { useNavigate } from "react-router-dom";
 import * as loginActions from "../../../actions/login.action";
 import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../..";
 const drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
@@ -82,7 +83,7 @@ type HeaderProp = {
 export default function Header({ open, onDrawerOpen }: HeaderProp) {
   const theme = useTheme();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleDrawerOpen = () => {
     // setOpen(true);

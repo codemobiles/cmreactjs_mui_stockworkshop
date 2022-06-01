@@ -8,7 +8,7 @@ import { createBrowserHistory } from "history";
 
 import { createStore, applyMiddleware, Middleware } from "redux";
 import thunk from "redux-thunk";
-import { Provider } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
 import reducers from "./reducers";
 import logger from "redux-logger";
 
@@ -20,6 +20,11 @@ if (process.env.REACT_APP_IS_PRODUCTION != "1") {
 
 export const history = createBrowserHistory();
 export const store = createStore(reducers, applyMiddleware(...middlewares));
+
+// reference
+// https://redux.js.org/usage/usage-with-typescript
+export type AppDispatch = typeof store.dispatch;
+export const useAppDispatch = () => useDispatch<AppDispatch>();
 
 ReactDOM.render(
   <BrowserRouter>

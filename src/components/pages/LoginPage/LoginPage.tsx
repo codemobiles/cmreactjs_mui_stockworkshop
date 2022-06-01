@@ -6,6 +6,7 @@ import { User } from "../../../types/user.type";
 import { useDispatch, useSelector } from "react-redux";
 import { RootReducers } from "../../../reducers";
 import * as loginActions from "../../../actions/login.action";
+import { useAppDispatch } from "../../..";
 
 type LoginPageProps = {
   //
@@ -14,7 +15,7 @@ type LoginPageProps = {
 const LoginPage: React.FC<any> = () => {
   const loginReducer = useSelector((state: RootReducers) => state.loginReducer);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
   const classes: SxProps<Theme> | any = {
@@ -56,7 +57,17 @@ const LoginPage: React.FC<any> = () => {
           autoFocus
         />
 
-        <TextField variant="outlined" margin="normal" required fullWidth id="password" label="Password" onChange={handleChange} value={values.password} type="password" />
+        <TextField
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          id="password"
+          label="Password"
+          onChange={handleChange}
+          value={values.password}
+          type="password"
+        />
         <br />
 
         {loginReducer.isError && <Alert severity="error">Login failed</Alert>}

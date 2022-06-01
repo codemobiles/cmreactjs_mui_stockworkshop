@@ -4,6 +4,7 @@ import { TextField } from "formik-material-ui";
 import * as React from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../..";
 import { Product } from "../../../types/product.type";
 import * as stockActions from "./../../../actions/stock.action";
 
@@ -12,7 +13,7 @@ type StockCreatePageProps = {
 };
 
 const StockCreatePage: React.FC<any> = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const showPreviewImage = (values: any) => {

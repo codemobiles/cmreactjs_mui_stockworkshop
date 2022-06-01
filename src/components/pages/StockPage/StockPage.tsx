@@ -29,6 +29,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDebounce, useDebounceCallback } from "@react-hook/debounce";
 import { Product } from "../../../types/product.type";
 import StockCard from "../../layouts/StockCard";
+import { useAppDispatch } from "../../..";
 
 interface QuickSearchToolbarProps {
   clearSearch: () => void;
@@ -98,7 +99,7 @@ function QuickSearchToolbar(props: QuickSearchToolbarProps) {
 
 export default function StockPage() {
   const stockReducer = useSelector((state: RootReducers) => state.stockReducer);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [keywordSearch, setKeywordSearch] = useDebounce<string>("", 1000);
   const [keywordSearchNoDelay, setKeywordSearchNoDelay] = React.useState<string>("");
   const [selectedProduct, setSelectedProduct] = React.useState<Product | null>(null);
